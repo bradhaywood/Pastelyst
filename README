@@ -1,0 +1,18 @@
+Run script/pastelyst_server.pl to test the application.
+
+Pastelyst is a Catalyst-based Snippet sharer - similar to Pastebin but without all the bells and whistles. It uses the Bootstrap CSS framework, which is just amazing to work with.
+I created Pastelyst because I like Perl, I like Catalyst, I like snippets, I like Perl and most of all, I like .. wait, I've said Perl already, right?
+It's quite minimal at the moment, but it does it's job, which is the main thing. Currently the features are:
+
+    * Add a new snippet (paste) with highlighting support from 11 different languages (programming languages, not ones like Elvish)
+    * The ability to use [tab] in the code textarea which inserts 4 spaces instead of losing focus
+    * Keeps history of the latest 10 pastes in the sidenav
+    * Lists the 5 most karmatic pastes (pastes with the most karma (views))
+    * Delete a paste
+    * Search in the top nav. It's case IN-sensitive and will search the database for the name of a paste
+
+That's about it so far.
+
+*NOTE* I haven't tested Bootstrap out in browsers other than the latest Chrome and Firefox, so be warned if you use anything else. I have to say that Pastelyst looks pretty snazzy on Smartphones (WebKit).
+
+Happy Snippeting!
