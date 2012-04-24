@@ -1,4 +1,0 @@
-Pastelyst
-=========
-
-Catalyst driven Pastebin
