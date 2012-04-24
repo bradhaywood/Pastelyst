@@ -1,0 +1,39 @@
+<h1>Add new paste</h1>
+<form action="" method="post" class="form-horizontal">
+    <fieldset>
+        <legend>Creative Juices</legend>
+        <div class="control-group">
+            <label class="control-label" for="title">Title of paste</label>
+            <div class="controls">
+                <input type="text" name="name" id="title">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="syntax">Syntax</label>
+            <div class="controls">
+                <select id="syntax" name="syntax">
+                    <option value="perl">Perl</option>
+                    <option value="php">PHP</option>
+                    <option value="js">Javascript</option>
+                    <option value="py">Python</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="rb">Ruby</option>
+                    <option value="sql">SQL</option>
+                    <option value="yaml">YAML</option>
+                    <option value="bsh">Bash</option>
+                    <option value="txt">Text</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="code">Code</label>
+            <div class="controls">
+                <textarea name="code" id="code" class="paste-code input-xxlarge" rows="20"><% IF last_code %><% last_code %><% END %></textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" name="submit" value="submit">Paste!</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,16 @@
+<% IF results %>
+    Found <strong><% results.count %></strong> result<% IF results.count > 1 %>s<% END %>
+    <br />
+    <div class="well">
+    <ul>
+        <% WHILE (row = results.next) %>
+            <li><a href="/<% row.id %>"><% row.name %></a> - Created <% row.date_created %></li>
+        <% END %>
+    </ul>
+    </div>
+<% ELSE %>
+    <div class="well">
+        <h2>Awwwww!</h2>
+        <h5>No results found :-(</h5>
+    </div>
+<% END %>
