@@ -7,7 +7,7 @@ __PACKAGE__->config(
     schema_class => 'Pastelyst::Schema',
     
     connect_info => {
-        dsn => 'dbi:SQLite:/home/brad/Pastelyst/root/db/pastes.db',
+        dsn => 'dbi:SQLite:pastes.db',
         user => '',
         password => '',
     }
