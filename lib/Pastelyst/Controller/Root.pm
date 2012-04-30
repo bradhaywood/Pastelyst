@@ -54,6 +54,7 @@ The main page. This is where a user can submit a new paste.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
+    $c->stash->{section} = 'home';
     if ($c->req->body_params->{submit}) {
         my $name   = $c->req->body_params->{name};
         my $syntax = $c->req->body_params->{syntax};

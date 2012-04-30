@@ -11,7 +11,6 @@
     <!-- Le styles -->
     <link href="/static/img/paste.ico" rel="icon">
     <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <!-- <link href="/static/css/pastelyst.css" rel="stylesheet">-->
 
     <style type="text/css">
       body {
@@ -26,7 +25,7 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="/static/js/html5.js"></script>
     <![endif]-->
 
     <!-- Le fav and touch icons -->
@@ -46,11 +45,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/"><strong>Paste</strong>lyst</a>
+          <a class="brand" href="/">Pastelyst</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li [% IF section == 'home' %]class="active"[% END %]><a href="/">New Paste</a></li>
-              <li><a href="#about">About</a></li>
+              <li <% IF section == 'home' %>class="active"<% END %>><a href="/">New Paste</a></li>
+              <li <% IF section == 'about' %>class="active"<% END %>><a href="javascript:;" id="about">About</a></li>
             </ul>
             <ul class="nav pull-right">
               <li>
@@ -159,6 +158,9 @@
 
                     e.preventDefault();
                 }
+            });
+            $('#about').click(function() {
+                alert("Pastelyst for Catalyst, 2012");
             });
         });
     </script>
