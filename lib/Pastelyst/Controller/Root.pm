@@ -1,7 +1,6 @@
 package Pastelyst::Controller::Root;
 
 use DateTime;
-use MIME::Base64 'encode_base64';
 use Moose;
 use namespace::autoclean;
 
@@ -60,8 +59,9 @@ sub index :Path :Args(0) {
         my $syntax = $c->req->body_params->{syntax};
         my $code   = $c->req->body_params->{code};
         if ($name and $syntax and $code) {
-            my $now = DateTime->now->dmy;
-            my $id  = substr(encode_base64("${now}:${name}"), 0, 8);
+            my $id;
+            my @chars = ('a'..'z', '0'..'9', 'A'..'Z');
+            $id .= $chars[rand($#chars)] for (0..8);
             my $uri = $c->req->uri . "${id}";
             my $dt  = DateTime->now;
             $c->model('PasteDB::Paste')->create({
