@@ -1,4 +1,11 @@
-Run script/pastelyst_server.pl to test the application.
+INSTALLATION
+------------
+
+1/ Install App::cpanminus (cpanm) from CPAN
+2/ Run # cpanm --sudo --installdeps . or omit the --sudo if running with Perlbrew
+3/ Run script/pastelyst_server.pl to run the application.
+
+-----------
 
 Pastelyst is a Catalyst-based Snippet sharer - similar to Pastebin but without all the bells and whistles. It uses the Bootstrap CSS framework, which is just amazing to work with.
 I created Pastelyst because I like Perl, I like Catalyst, I like snippets, I like Perl and most of all, I like .. wait, I've said Perl already, right?
