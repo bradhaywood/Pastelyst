@@ -52,7 +52,7 @@
               <li <% IF section == 'about' %>class="active"<% END %>><a href="javascript:;" id="about">About</a></li>
               <% IF paste.id %>
               <li class="active dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white"></i> <% paste.name %> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-pencil icon-white"></i> <% paste.name %> <b class="caret"></b></a>
 
                         <ul class="dropdown-menu">
                             <li><a href="<% c.uri_for(c.controller('Paste').action_for('delete'), [ paste.id ]) %>"><i class="icon-remove icon-black"></i> Delete</a></li>
