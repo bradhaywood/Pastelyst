@@ -138,6 +138,39 @@ sub search :Local :Args(0) {
     }
 }
 
+=head2 search_autocomplete
+
+=cut
+
+sub search_autocomplete :Local :Args(1) {
+    my ($self, $c, $q) = @_;
+
+    my $paste_rs  = $c->model('PasteDB::Paste');
+    my $results = $paste_rs->search_rs(
+        \[ "lower(name) like ?", [dummy => lc "%$q%" ] ],
+    );
+
+    my @data;
+    while(my $item = $results->next) {
+        push @data, $item->name;
+    }
+    $c->stash->{json} = \@data;
+    $c->detach('View::JSON');
+}
+
+sub pastes_json :Local :Args(0) {
+    my ($self, $c) = @_;
+    
+    my @json;
+    my $paste_rs = $c->model('PasteDB::Paste');
+    while(my $p = $paste_rs->next) {
+        push @json, $p->name;
+    }
+
+    $c->stash->{json} = \@json;
+    $c->detach('View::JSON');
+}
+
 =head2 end
 
 Attempt to render a view, if needed.

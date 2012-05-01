@@ -18,6 +18,7 @@ requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'Catalyst::Plugin::Session::Store::FastMmap';
 requires 'Catalyst::View::TT::Alloy';
 requires 'Catalyst::Model::DBIC::Schema';
+requires 'Catalyst::View::JSON';
 requires 'DateTime';
 requires 'Moose';
 requires 'MooseX::NonMoose';
