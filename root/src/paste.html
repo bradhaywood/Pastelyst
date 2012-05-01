@@ -2,7 +2,7 @@
     <h1><% paste.name %></h1>
     <h6>Brought upon an unsuspecting world <% paste.date_created %></h6>
     <br />
-    <pre <% UNLESS paste.syntax == 'txt' %>class="prettyprint lang-<% paste.syntax %> shadow"<% END %>><% paste.code %></pre>
+    <pre <% UNLESS paste.syntax == 'txt' %>class="prettyprint linenums lang-<% paste.syntax %> shadow"<% END %>><% paste.code %></pre>
 <% ELSE %>
     <h1>Sorry coder, </h1>
     <h3>... but your paste is in another castle</h3>
