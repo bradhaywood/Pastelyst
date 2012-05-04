@@ -54,6 +54,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-pencil icon-white"></i> <% paste.name %> <b class="caret"></b></a>
 
                         <ul class="dropdown-menu">
+                            <li><a href="<% c.uri_for(c.controller('Paste').action_for('add_karma'), [ paste.id]) %>"><i class="icon-ok icon-black"></i> It's good!</a></li>
                             <li><a href="<% c.uri_for(c.controller('Paste').action_for('delete'), [ paste.id ]) %>"><i class="icon-remove icon-black"></i> Delete</a></li>
                         </ul>
                       </li>
@@ -75,6 +76,7 @@
     <div class="container-fluid">
       <% IF status_msg %><div class="alert alert-success"><% status_msg | none %></div><% END %>
       <% IF error_msg %><div class="alert alert-error"><% error_msg | none %></div><% END %>
+      <% IF info_msg %><div class="alert alert-info"><% info_msg | none %></div><% END %>
       <div class="row-fluid">
         <div class="span10">
             <% content | none %>

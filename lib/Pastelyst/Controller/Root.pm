@@ -112,7 +112,6 @@ sub default :Path {
     if ($paste) {
         $c->stash->{title}    = $c->config->{name} . ' - ' . $paste->name;
         $c->stash->{paste}    = $paste;
-        $paste->update({ karma => ($paste->karma + 1) });
     }
     else {
         $c->stash->{title} = $c->config->{name} . " - Why are we here?";

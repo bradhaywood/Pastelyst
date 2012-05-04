@@ -43,6 +43,16 @@ sub paste_chain :Chained('/') :PathPart('paste') :CaptureArgs(1){
     $c->stash->{paste} = $paste;
 }
 
+sub add_karma :Chained('paste_chain') :PathPart('karmanize') {
+    my ($self, $c) = @_;
+    my $paste = $c->stash->{paste};
+    # this will eventually be for logged in users only
+    $paste->update({ karma => ($paste->karma + 1) });
+    $c->flash->{info_msg} = "Added +1 karma to <strong>" . $paste->name . "</strong>";
+    $c->res->redirect($c->req->base . $paste->id);
+    $c->detach;
+}
+
 =head2 delete
 
 Removes the paste loaded in the stash and then redirects you back to the front page in the Root controller
