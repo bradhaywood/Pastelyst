@@ -39,7 +39,8 @@ sub auto :Private {
         rows => 5,
         order_by => { -desc => 'karma' }
     });
-    
+
+    if ($c->user) { $c->stash->{saved_pastes} = $c->user->saved_pastes; }
     $c->stash->{karma_pastes}  = [ $karma->all  ] if $karma->count > 0;
     $c->stash->{recent_pastes} = [ $recent->all ] if $recent->count > 0;
     $c->stash->{title} = $c->config->{name} . " - Add a snippet";
@@ -83,6 +84,10 @@ sub index :Path :Args(0) {
             $c->res->redirect($c->req->uri);
             $c->detach;
         }
+    }
+
+    if ($c->req->body_params->{'login-submit'}) {
+        $c->forward( '/auth/login', [ $c->req->body_params ] );
     }
 }
 

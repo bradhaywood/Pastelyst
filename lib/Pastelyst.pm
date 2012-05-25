@@ -23,6 +23,7 @@ use Catalyst qw/
     Session
     Session::Store::FastMmap
     Session::State::Cookie
+    Authentication
 /;
 
 extends 'Catalyst';
@@ -47,6 +48,20 @@ __PACKAGE__->config(
         driver => {
             'General' => { -ForceArray => 1 },
         },
+    },
+    
+    'Plugin::Authentication' => {
+        default => {
+            credential => {
+                class => 'Password',
+                password_field => 'password',
+                password_type => 'clear'
+            },
+            store => {
+                class => 'DBIx::Class',
+                user_model => 'PasteDB::User',
+            }
+        }
     },
 );
 

@@ -43,6 +43,25 @@ sub paste_chain :Chained('/') :PathPart('paste') :CaptureArgs(1){
     $c->stash->{paste} = $paste;
 }
 
+sub save :Chained('paste_chain') :PathPart('save') {
+    my ($self, $c) = @_;
+    my $paste = $c->stash->{paste};
+    my $save_rs = $c->model('PasteDB::SavedPaste');
+    if ($c->user->saved_pastes->find({ paste_id => $paste->id })) {
+        $c->flash->{error_msg} = "You have already saved <strong>" . $paste->name . "</strong>";
+        $c->res->redirect($c->req->base . $paste->id);
+        $c->detach;
+    }
+    $save_rs->create({
+        user_id  => $c->user->id,
+        paste_id => $paste->id
+    });
+    
+    $c->flash->{status_msg} = "Saved <strong>" . $paste->name . "</strong> to your favorites";
+    $c->res->redirect($c->req->base . $paste->id);
+    $c->detach;
+}
+
 sub add_karma :Chained('paste_chain') :PathPart('karmanize') {
     my ($self, $c) = @_;
     my $paste = $c->stash->{paste};

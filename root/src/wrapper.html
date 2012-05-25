@@ -56,6 +56,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<% c.uri_for(c.controller('Paste').action_for('add_karma'), [ paste.id]) %>"><i class="icon-ok icon-black"></i> It's good!</a></li>
                             <li><a href="<% c.uri_for(c.controller('Paste').action_for('delete'), [ paste.id ]) %>"><i class="icon-remove icon-black"></i> Delete</a></li>
+                            <% IF c.user.username %><li><a href="<% c.uri_for(c.controller('Paste').action_for('save'), [ paste.id ]) %>"><i class="icon-flag icon-black"></i> Save this paste</a></li><% END %>
                         </ul>
                       </li>
               <% END %>
@@ -66,6 +67,18 @@
                   <input type="text" name="q" class="search-query span2" id="search" autocomplete="off" data-provide="typeahead" placeholder="Search...">
                 </form>
               </li>
+                 <% IF c.user.username %>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> <% c.user.name %> <b class="caret"></b></a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="<% c.uri_for(c.controller('Auth').action_for('logout')) %>">Logout</a></li>
+                        </ul>
+                 <% ELSE %>
+                    <li>
+                    <a id="showLogin" href="javascript:;" >Login</a>
+                 <% END %>
+                </li>
             </ul>
             <!-- <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p> -->
           </div><!--/.nav-collapse -->
@@ -108,6 +121,23 @@
             </ul>
           </div><!--/.well -->
 
+         <div class="well shadow sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">Saved pastes</li>
+                    <% IF c.user.username %>
+                        <% IF saved_pastes.count > 0 %>
+                            <% WHILE (paste = saved_pastes.next)  %>
+                                <li><a class="tippy" title="Created <% paste.paste.date_created %>" href="/<% paste.paste.id %>"><% paste.paste.name %></a></li>
+                            <% END %>
+                        <% ELSE %>
+                            <li>You have no saved pastes.</li>
+                        <% END %>
+                    <% ELSE %>
+                    <a href="<% c.uri_for(c.controller('Auth').action_for('signup')) %>">Sign up to Pastelyst to save pastes</a>
+                    <% END %>
+                </li>
+            </ul>
+        </div>
           <ul class="nav nav-pills">
             <li class="dropdown" id="menu1">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Style <b class="caret"></b></a>
@@ -145,6 +175,7 @@
     <script src="/static/js/bootstrap-tooltip.js"></script>-->
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="<% c.uri_for('/static/js/bootstrap.js') %>"></script>
+    <script type="text/javascript" src="<% c.uri_for('/static/js/bootstrap-modal.js') %>"></script>
     <script type="text/javascript" src="<% c.uri_for('/static/js/bootstrap-tooltip.js') %>"></script>
     <script type="text/javascript" src="<% c.uri_for('/static/js/bootstrap-dropdown.js') %>"></script>
     <script type="text/javascript" src="<% c.uri_for('/static/js/bootstrap-transition.js') %>"></script>
@@ -173,6 +204,14 @@
                 alert("Pastelyst for Catalyst, 2012");
             });
 
+            $('#showLogin').click(function() {
+                $('#loginModal').show();
+            });
+            
+            $('.close').click(function() {
+                $('.modal').hide();
+            });
+
             // Autocomplete
             var items = [];
             $.getJSON("<% c.uri_for(c.controller('Root').action_for('pastes_json')) %>", function(data) {
@@ -185,7 +224,36 @@
         });
     </script>
     <% IF paste %>
-    <% END %> 
+    <% END %>
+
+    <div class="modal" style="display:none" id="loginModal">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h3>Login to Pastelyst</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+              <form action="" method="post" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="login-username">Username</label>
+                    <div class="controls">
+                        <input type="text" name="login-username" id="login-username">
+                    </div>
+                </div>
+            
+                <div class="control-group">
+                    <label class="control-label" for="login-password">Password</label>
+                    <div class="controls">
+                        <input type="password" name="login-password" id="login-password">
+                    </div>
+                </div>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" name="login-submit" value="submit">Sign me in</button>
+          </form>
+        </div>
+    </div> 
  </body>
 </html>
 

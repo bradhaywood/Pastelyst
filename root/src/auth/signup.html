@@ -1,0 +1,10 @@
+<h1>Signup to Pastelyst</h1>
+
+<form action="" method="post" class="form-horizontal">
+    <% form_input(c, 'username', 'Username') | none %>
+    <% form_input(c, 'password', 'Password', 'password') | none %>
+    <% form_input(c, 'name', 'Full Name') | none %>
+    <div class="form-actions">
+        <button class="btn btn-primary" name="create-user" value="create">Signup</button>
+    </div>
+</form>

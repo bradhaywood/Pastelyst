@@ -1,12 +1,12 @@
 use utf8;
-package Pastelyst::Schema::Result::Paste;
+package Pastelyst::Schema::Result::User;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Pastelyst::Schema::Result::Paste
+Pastelyst::Schema::Result::User
 
 =cut
 
@@ -30,80 +30,59 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<pastes>
+=head1 TABLE: C<users>
 
 =cut
 
-__PACKAGE__->table("pastes");
+__PACKAGE__->table("users");
 
 =head1 ACCESSORS
 
-=head2 paste_id
+=head2 id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 id
+=head2 username
 
-  data_type: 'integer'
+  data_type: 'text'
+  is_nullable: 0
+
+=head2 password
+
+  data_type: 'text'
   is_nullable: 0
 
 =head2 name
 
   data_type: 'text'
-  is_nullable: 0
-
-=head2 code
-
-  data_type: 'blob'
-  is_nullable: 0
-
-=head2 syntax
-
-  data_type: 'text'
-  is_nullable: 0
-
-=head2 date_created
-
-  data_type: 'text'
-  is_nullable: 0
-
-=head2 karma
-
-  data_type: 'integer'
   is_nullable: 1
 
 =cut
 
 __PACKAGE__->add_columns(
-  "paste_id",
-  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  "username",
+  { data_type => "text", is_nullable => 0 },
+  "password",
+  { data_type => "text", is_nullable => 0 },
   "name",
-  { data_type => "text", is_nullable => 0 },
-  "code",
-  { data_type => "blob", is_nullable => 0 },
-  "syntax",
-  { data_type => "text", is_nullable => 0 },
-  "date_created",
-  { data_type => "text", is_nullable => 0 },
-  "karma",
-  { data_type => "integer", is_nullable => 1 },
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
 
 =over 4
 
-=item * L</paste_id>
+=item * L</id>
 
 =back
 
 =cut
 
-__PACKAGE__->set_primary_key("paste_id");
+__PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
@@ -118,13 +97,13 @@ Related object: L<Pastelyst::Schema::Result::SavedPaste>
 __PACKAGE__->has_many(
   "saved_pastes",
   "Pastelyst::Schema::Result::SavedPaste",
-  { "foreign.paste_id" => "self.id" },
+  { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07017 @ 2012-05-25 11:33:03
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5nKlmfHcgXozLgF0oAKh5A
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Grvj1AC963OeJXfoPtl7xQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
