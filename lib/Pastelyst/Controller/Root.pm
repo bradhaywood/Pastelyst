@@ -26,7 +26,11 @@ Loads the sidebar, which holds the Recent pastes and karmatic ones. Karmatic are
 
 sub auto :Private {
     my ($self, $c) = @_;
-    
+
+    if ($c->req->body_params->{'login-submit'}) {
+        $c->forward( '/auth/login', [ $c->req->body_params ] );
+    }
+
     my $paste_rs = $c->model('PasteDB::Paste');
     my $recent = $paste_rs->search(undef, {
         order_by => { -desc => 'paste_id' },
@@ -84,10 +88,6 @@ sub index :Path :Args(0) {
             $c->res->redirect($c->req->uri);
             $c->detach;
         }
-    }
-
-    if ($c->req->body_params->{'login-submit'}) {
-        $c->forward( '/auth/login', [ $c->req->body_params ] );
     }
 }
 
