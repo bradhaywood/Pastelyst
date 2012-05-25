@@ -11,6 +11,7 @@ all_from 'lib/Pastelyst.pm';
 
 requires 'Catalyst::Runtime' => '5.90011';
 requires 'Catalyst::Plugin::ConfigLoader';
+requires 'Catalyst::Plugin::Authentication';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::Restarter';
@@ -19,6 +20,7 @@ requires 'Catalyst::Plugin::Session::Store::FastMmap';
 requires 'Catalyst::View::TT::Alloy';
 requires 'Catalyst::Model::DBIC::Schema';
 requires 'Catalyst::View::JSON';
+requires 'Digest::SHA';
 requires 'DateTime';
 requires 'Moose';
 requires 'MooseX::NonMoose';
