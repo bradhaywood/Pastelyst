@@ -9,6 +9,8 @@ use Module::Install::Catalyst; # Complain loudly if you don't have
 name 'Pastelyst';
 all_from 'lib/Pastelyst.pm';
 
+requires 'Plack::Builder';
+requires 'Catalyst::Authentication::Store::DBIx::Class';
 requires 'Catalyst::Runtime' => '5.90011';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Authentication';
